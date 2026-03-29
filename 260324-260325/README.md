@@ -78,9 +78,6 @@ const choice = {
 choice[0]
 ```
 
-
----
-
 ### 원인
 
 #### 1. 객체(Object)의 특징
@@ -91,8 +88,6 @@ choice[0]
 
 즉, 숫자 index로 접근 불가능
 
----
-
 #### 2. 배열(Array)의 특징
 
 * index 기반 구조
@@ -100,8 +95,6 @@ choice[0]
 * 랜덤 선택에 적합
 
 랜덤 선택은 결국 "몇 번째 요소"를 고르는 것
-
----
 
 ### 해결
 
@@ -141,8 +134,6 @@ const randomChoice = () => {
   return choice[randomKey]
 }
 ```
-
----
 
 #### 💡 Object.values()를 활용하는 법
 
