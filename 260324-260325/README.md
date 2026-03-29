@@ -54,3 +54,110 @@ const Box = ({ title, item, result }) => {
 item?.img   // 안전하게 접근
 || nullImg  // 없으면 기본값
 ```
+
+### ⚠️ 랜덤 선택 문제
+
+### 문제
+
+가위, 바위, 보 데이터를 객체(Object) 형태로 관리하고 있었고,
+컴퓨터의 선택을 랜덤으로 구현하려고 할 때 문제가 발생했다.
+- 객체는 배열처럼 index로 접근할 수 없음
+- 랜덤으로 요소를 선택할 수 없음
+
+```js
+const choice = {
+  scissors: { name: 'scissors', img: ... },
+  rock: { name: 'rock', img: ... },
+  paper: { name: 'paper', img: ... }
+}
+```
+
+#### 문제 코드
+
+```js
+choice[0]
+```
+
+
+---
+
+### 원인
+
+#### 1. 객체(Object)의 특징
+
+* key-value 구조
+* 순서(index)가 없음
+* 접근 방식: `choice.rock` 또는 `choice['rock']`
+
+즉, 숫자 index로 접근 불가능
+
+---
+
+#### 2. 배열(Array)의 특징
+
+* index 기반 구조
+* `arr[0]`, `arr[1]` 접근 가능
+* 랜덤 선택에 적합
+
+랜덤 선택은 결국 "몇 번째 요소"를 고르는 것
+
+---
+
+### 해결
+
+#### 1. 객체를 배열로 변환
+
+```js
+const keys = Object.keys(choice) // ['scissors', 'rock', 'paper']
+```
+
+
+#### 2. 랜덤 index 생성
+
+```js
+const randomIndex = Math.floor(Math.random() * keys.length)
+```
+
+
+#### 3. 랜덤 key 선택
+
+```js
+const randomKey = keys[randomIndex]
+```
+
+#### 4. 최종 값 반환
+
+```js
+return choice[randomKey]
+```
+
+#### 5. 최종 코드
+
+```js
+const randomChoice = () => {
+  const keys = Object.keys(choice)
+  const randomIndex = Math.floor(Math.random() * keys.length)
+  const randomKey = keys[randomIndex]
+  return choice[randomKey]
+}
+```
+
+---
+
+#### 💡 Object.values()를 활용하는 법
+
+`Object.values()`를 활용하면 객체의 value만 배열로 반환하여   
+더 간단하게 랜덤 값을 뽑을 수 있다.
+```js
+const values = Object.values(choice)
+
+console.log(values);
+
+0 : {name: 'scissors', img: '/rock-paper-scissors-game/src/assets/scissors_me.png'}
+1 : {name: 'rock', img: '/rock-paper-scissors-game/src/assets/rock_me.png'}
+2 : {name: 'paper', img: '/rock-paper-scissors-game/src/assets/paper_me.png'}
+
+return values[Math.floor(Math.random() * values.length)]; //랜덤 값 최종 도출
+```
+ 
+
