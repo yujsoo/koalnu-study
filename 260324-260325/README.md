@@ -5,7 +5,7 @@
 
 ## 가위바위보 게임 1~6
 
-## ⚠️ Cannot read properties of undefined
+### ⚠️ Cannot read properties of undefined
 
 ### 문제
 가위바위보 선택 값을 `state`로 관리하고, 해당 값에 따라 이미지를 보여주려고 했다.  
