@@ -54,6 +54,7 @@ const Box = ({ title, item, result }) => {
 item?.img   // 안전하게 접근
 || nullImg  // 없으면 기본값
 ```
+---
 
 ### ⚠️ 랜덤 선택 문제
 
